@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERIKA CHUNG — NYFW 2027</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* ---- 夜色主題（預設） ---- */
+    --bg-0:#070F1A;
+    --bg-1:#0B1830;
+    --bg-2:#0E1F3D;
+    --glow:rgba(201,160,107,.10);
+    --glow-2:rgba(201,160,107,.05);
+
+    /* ---- 共用 ---- */
+    --gold:#C9A06B;
+    --gold-light:#E8D2AE;
+    --gold-dim:rgba(201,160,107,.35);
+    --paper:#F3EFE7;
+    --paper-dim:#cfc9bd;
+    --line:rgba(243,239,231,.10);
+    --line-strong:rgba(243,239,231,.22);
+
+    --serif:'Cormorant Garamond','Noto Serif TC',serif;
+    --serif-tc:'Noto Serif TC','Cormorant Garamond',serif;
+    --sans:'Jost','Noto Sans TC',sans-serif;
+
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+
+  [data-theme="dusk"]{
+    --bg-0:#1A0F0B;
+    --bg-1:#34160F;
+    --bg-2:#6B3220;
+    --glow:rgba(224,150,92,.14);
+    --glow-2:rgba(224,150,92,.06);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg-0);
+    color:var(--paper);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    transition:background 1.2s var(--ease);
+  }
+  ::selection{background:var(--gold);color:#070F1A;}
+
+  .serif{font-family:var(--serif);}
+  .serif-tc{font-family:var(--serif-tc);}
+  .gold-text{
+    background:linear-gradient(135deg,#fbf3e6 0%,var(--gold-light) 45%,var(--gold) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+  }
+  .container{
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding-left:24px;
+    padding-right:24px;
+  }
+  @media(min-width:768px){
+    .container{padding-left:48px;padding-right:48px;}
+  }
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:fixed;top:0;left:0;width:100%;z-index:50;
+    background:linear-gradient(to bottom, rgba(7,15,26,.82), rgba(7,15,26,0));
+    backdrop-filter:blur(6px);
+    padding:18px 16px;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:10px;
+    transition:background .6s var(--ease);
+  }
+  @media(min-width:600px){header.site{padding:22px 24px;}}
+  @media(min-width:768px){header.site{padding:26px 48px;}}
+  header.site.scrolled{
+    background:rgba(7,15,26,.78);
+    border-bottom:1px solid var(--line);
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;}
+  .brand-mark img{height:26px;width:auto;display:block;border-radius:2px;}
+  .brand-name{
+    font-family:var(--sans);font-weight:500;
+    font-size:11px;letter-spacing:.28em;color:var(--paper);
+    white-space:nowrap;
+  }
+  @media(min-width:600px){
+    .brand-mark img{height:30px;}
+    .brand-name{font-size:13px;letter-spacing:.32em;}
+  }
+  nav.links{display:none;gap:40px;font-size:10.5px;letter-spacing:.24em;color:var(--paper-dim);text-transform:uppercase;}
+  @media(min-width:860px){nav.links{display:flex;}}
+  nav.links a{color:inherit;text-decoration:none;position:relative;padding-bottom:6px;transition:color .3s var(--ease);}
+  nav.links a::after{
+    content:'';position:absolute;left:0;bottom:0;height:1px;width:0;
+    background:var(--gold);transition:width .35s var(--ease);
+  }
+  nav.links a:hover{color:var(--gold-light);}
+  nav.links a:hover::after{width:100%;}
+
+  .top-controls{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .theme-switch{
+    display:none;
+  }
+  @media(min-width:560px){
+    .theme-switch{
+      display:inline-flex;align-items:center;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:999px;padding:4px;gap:2px;
+    }
+  }
+  .theme-switch button{
+    font-family:var(--sans);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    padding:7px 12px;border-radius:999px;border:none;background:transparent;
+    color:var(--paper-dim);cursor:pointer;white-space:nowrap;
+    transition:background .4s var(--ease),color .4s var(--ease);
+  }
+  @media(min-width:768px){
+    .theme-switch button{font-size:9.5px;letter-spacing:.18em;padding:8px 16px;}
+  }
+  .theme-switch button.active{
+    background:var(--gold);color:#1a0f0b;font-weight:500;
+  }
+  .pill-btn{
+    font-family:var(--sans);font-size:9px;letter-spacing:.16em;
+    border:1px solid var(--line-strong);
+    background:transparent;color:var(--paper-dim);
+    padding:7px 11px;border-radius:999px;cursor:pointer;
+    display:flex;align-items:center;gap:6px;
+    transition:border-color .35s var(--ease),color .35s var(--ease),background .35s var(--ease);
+    text-transform:uppercase;flex-shrink:0;
+  }
+  @media(min-width:768px){
+    .pill-btn{font-size:9.5px;letter-spacing:.2em;padding:8px 14px;gap:7px;}
+  }
+  .pill-btn:hover{border-color:var(--gold-dim);color:var(--paper);}
+  .pill-btn .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+  #langBtn span{transition:color .3s var(--ease);}
+  #langBtn .active{color:var(--gold-light);font-weight:500;}
+  #langBtn .inactive{color:#5f6a78;}
+
+  /* 小螢幕下的主題切換：移到 mobile 專屬列 */
+  .theme-switch-mobile{
+    display:flex;
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--line);
+    border-radius:999px;padding:4px;gap:2px;
+    width:fit-content;margin:0 auto 0 0;
+  }
+  @media(min-width:560px){.theme-switch-mobile{display:none;}}
+  .theme-switch-mobile button{
+    font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    padding:8px 14px;border-radius:999px;border:none;background:transparent;
+    color:var(--paper-dim);cursor:pointer;
+    transition:background .4s var(--ease),color .4s var(--ease);
+  }
+  .theme-switch-mobile button.active{background:var(--gold);color:#1a0f0b;font-weight:500;}
+
+  /* ---------- Hero ---------- */
+  section.hero{
+    position:relative;
+    padding-top:84px;
+  }
+  .hero-bg{
+    position:relative;
+    width:100%;
+    aspect-ratio:1440/620;
+    overflow:hidden;
+  }
+  .hero-bg img{
+    width:100%;height:100%;object-fit:cover;object-position:center 40%;
+    filter:saturate(1.03);
+    display:block;
+  }
+  @media(min-width:1100px){
+    .hero-bg{aspect-ratio:2172/780;}
+  }
+  @media(max-width:1099px){
+    .hero-bg{aspect-ratio:2172/900;}
+    .hero-bg img{object-position:90% 38%;}
+  }
+  @media(max-width:480px){
+    .hero-bg{aspect-ratio:2172/950;}
+  }
+  .hero-bg .veil{
+    position:absolute;inset:0;
+    background:linear-gradient(to top, var(--bg-0) 0%, rgba(7,15,26,0) 22%);
+    transition:background 1.2s var(--ease);
+  }
+  [data-theme="dusk"] .hero-bg .veil{
+    background:linear-gradient(to top, var(--bg-0) 0%, rgba(26,15,11,0) 22%);
+  }
+  .hero-bg .edge-veil{
+    position:absolute;inset:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,.28) 0%, transparent 18%);
+  }
+  .hero-bg .grain{
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+    background-size:3px 3px;
+    opacity:.4;mix-blend-mode:overlay;
+  }
+
+  .hero-info{
+    position:relative;z-index:10;
+    padding:40px 24px 56px;
+    display:flex;flex-direction:column;gap:28px;
+    max-width:1440px;
+    margin:0 auto;
+  }
+  @media(min-width:768px){.hero-info{padding:48px 48px 72px;}}
+
+  .eyebrow-row{display:flex;align-items:center;gap:14px;}
+  .eyebrow-line{height:1px;width:34px;background:var(--gold);}
+  .eyebrow{
+    font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--gold-light);
+  }
+
+  .hero-bottom-row{
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .hero-sub{
+    max-width:480px;
+    font-size:13.5px;line-height:1.95;letter-spacing:.03em;
+    color:var(--paper-dim);
+    margin:0;
+  }
+  .hero-tag-line{
+    font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#5f6a78;
+    margin:0 0 10px;
+  }
+  .scroll-cue{
+    display:flex;align-items:center;gap:10px;
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-dim);
+    flex-shrink:0;
+  }
+  .scroll-cue .ln{width:1px;height:30px;background:linear-gradient(to bottom, var(--gold), transparent);animation:dropline 2.2s var(--ease) infinite;}
+  @keyframes dropline{0%{opacity:.2;}50%{opacity:1;}100%{opacity:.2;}}
+
+  /* ---------- Section shared ---------- */
+  section{position:relative;}
+  .eyebrow-label{
+    font-family:var(--sans);font-size:10.5px;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--gold);display:block;margin-bottom:18px;
+  }
+  .divider-short{height:1px;width:64px;background:var(--gold-dim);margin:24px 0;}
+
+  /* ---------- Story rows (alternating) ---------- */
+  .story-row{
+    padding:96px 0;
+    border-top:1px solid var(--line);
+  }
+  .story-grid{
+    display:grid;grid-template-columns:1fr;gap:48px;align-items:center;
+  }
+  @media(min-width:900px){
+    .story-grid{grid-template-columns:1fr 1fr;gap:80px;}
+    .story-grid.reverse .media-col{order:2;}
+    .story-grid.reverse .text-col{order:1;}
+  }
+  .media-col .frame{
+    position:relative;
+    aspect-ratio:4/5;
+    border:1px solid var(--line-strong);
+    border-radius:2px;
+    background:linear-gradient(160deg, var(--bg-1), var(--bg-0));
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .media-col .frame .corner-tag{
+    position:absolute;top:18px;left:18px;
+    font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#5f6a78;
+    font-family:var(--sans);
+  }
+  .media-col .frame .placeholder-tag{
+    position:absolute;bottom:18px;right:18px;
+    font-family:var(--serif);font-style:italic;font-size:12px;color:var(--gold-dim);
+    text-align:right;
+  }
+  .sketch-svg{width:62%;height:auto;color:var(--line-strong);}
+
+  .text-col .num{
+    font-family:var(--serif);font-size:13px;color:var(--gold);letter-spacing:.1em;
+    margin-bottom:14px;display:block;
+  }
+  .text-col h3{
+    font-family:var(--serif-tc);
+    font-weight:500;
+    font-size:clamp(26px,3.4vw,38px);
+    line-height:1.35;
+    color:var(--paper);
+    margin:0 0 8px;
+  }
+  .text-col .en-title{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:15px;color:var(--gold-light);
+    letter-spacing:.02em;
+    margin:0 0 28px;
+  }
+  .text-col p.zh{
+    font-size:14.5px;line-height:1.95;letter-spacing:.02em;color:#cfd2d8;
+    margin:0 0 18px;
+  }
+  .text-col p.en{
+    font-family:var(--sans);font-weight:300;
+    font-size:12.5px;line-height:1.85;letter-spacing:.01em;color:var(--paper-dim);
+    font-style:italic;margin:0;
+  }
+
+  /* ---------- Concept teaser cards ---------- */
+  section.concepts{padding:96px 0;border-top:1px solid var(--line);background:var(--bg-1);}
+  .concepts-head{max-width:640px;margin-bottom:56px;}
+  .concepts-head h2{
+    font-family:var(--serif-tc);font-weight:500;font-size:clamp(28px,3.6vw,42px);
+    color:var(--paper);margin:0 0 10px;line-height:1.3;
+  }
+  .concepts-head .en{
+    font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold-light);
+  }
+  .concept-cards{display:grid;grid-template-columns:1fr;gap:28px;}
+  @media(min-width:860px){.concept-cards{grid-template-columns:1fr 1fr;}}
+  .concept-card{
+    border:1px solid var(--line);
+    background:linear-gradient(160deg, rgba(255,255,255,.015), transparent);
+    padding:32px;border-radius:2px;
+    transition:border-color .4s var(--ease),transform .4s var(--ease);
+  }
+  .concept-card:hover{border-color:var(--gold-dim);transform:translateY(-3px);}
+  .concept-card .frame-mini{
+    aspect-ratio:16/10;border:1px solid var(--line);border-radius:2px;
+    margin-bottom:24px;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 30% 20%, var(--glow), transparent 60%);
+    position:relative;overflow:hidden;
+  }
+  .concept-card .frame-mini .placeholder-tag{
+    position:absolute;bottom:14px;right:14px;
+    font-family:var(--serif);font-style:italic;font-size:10.5px;color:var(--gold-dim);
+  }
+  .concept-card h4{
+    font-family:var(--serif-tc);font-weight:500;font-size:19px;color:var(--paper);
+    margin:0 0 4px;line-height:1.5;
+  }
+  .concept-card .en-tag{
+    font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--gold-light);
+    margin:0 0 16px;display:block;
+  }
+  .concept-card p.zh{font-size:13.5px;line-height:1.85;color:#cfd2d8;margin:0 0 12px;}
+  .concept-card p.en{font-family:var(--sans);font-weight:300;font-size:11.5px;line-height:1.8;color:var(--paper-dim);font-style:italic;margin:0;}
+
+  /* ---------- Press + Seminar ---------- */
+  section.press{padding:96px 0;border-top:1px solid var(--line);}
+  .press-grid{display:grid;grid-template-columns:1fr;gap:56px;}
+  @media(min-width:900px){.press-grid{grid-template-columns:1fr 1fr;gap:80px;}}
+
+  .press-card{
+    background:var(--bg-1);border:1px solid var(--line-strong);
+    border-radius:2px;padding:36px;
+    aspect-ratio:4/3;display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;overflow:hidden;
+  }
+  .press-card::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 0%, var(--glow), transparent 55%);
+    pointer-events:none;
+  }
+  .press-card .mast{
+    font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:.06em;color:var(--paper);
+    display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;
+  }
+  .press-card .mast small{
+    font-family:var(--sans);font-weight:400;font-size:9.5px;letter-spacing:.18em;color:#5f6a78;
+  }
+  .press-card .quote{
+    border-left:1px solid var(--gold);padding-left:18px;position:relative;z-index:1;
+  }
+  .press-card .quote p{
+    font-family:var(--serif-tc);font-style:italic;font-weight:400;font-size:16px;color:var(--paper);
+    line-height:1.6;margin:0;
+  }
+  .press-card .foot{
+    display:flex;justify-content:space-between;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#5f6a78;
+    position:relative;z-index:1;
+  }
+  .press-card .foot .gold{color:var(--gold);}
+
+  .seminar-card{
+    background:var(--bg-1);border:1px solid var(--line);border-radius:2px;
+    padding:40px;display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .status-chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(80,200,150,.08);border:1px solid rgba(80,200,150,.25);
+    padding:6px 14px;border-radius:999px;
+    font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#7fd9b3;
+    width:fit-content;margin-bottom:24px;
+  }
+  .status-chip .dot{width:6px;height:6px;border-radius:50%;background:#7fd9b3;}
+  .seminar-card h3{
+    font-family:var(--serif-tc);font-weight:500;font-size:24px;color:var(--paper);margin:0 0 16px;
+  }
+  .seminar-card p{font-size:13.5px;line-height:1.9;color:#cfd2d8;margin:0 0 24px;}
+  .seminar-venue{
+    font-size:12px;letter-spacing:.05em;color:var(--paper-dim);
+    padding-top:20px;border-top:1px solid var(--line);margin-bottom:24px;
+  }
+  .seminar-venue .gold{color:var(--gold);font-weight:500;}
+  .seminar-closed-bar{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:2px;
+    text-align:center;padding:16px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-dim);
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site{
+    border-top:1px solid var(--line);
+    padding:96px 24px 48px;text-align:center;
+  }
+  footer.site .brand{font-family:var(--serif);font-size:26px;letter-spacing:.3em;color:var(--paper);margin:0 0 10px;}
+  footer.site .sub{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin:0 0 32px;}
+  footer.site .lead{
+    max-width:460px;margin:0 auto 40px;font-size:13px;line-height:1.9;color:var(--paper-dim);letter-spacing:.02em;
+  }
+  .social-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:56px;}
+  .social-btn{
+    display:flex;align-items:center;gap:10px;
+    border:1px solid var(--line-strong);border-radius:999px;
+    padding:13px 28px;color:var(--paper-dim);text-decoration:none;
+    transition:border-color .4s var(--ease),color .4s var(--ease),box-shadow .4s var(--ease);
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  }
+  .social-btn svg{width:15px;height:15px;transition:color .3s var(--ease);}
+  .social-btn:hover{border-color:var(--gold);color:var(--paper);box-shadow:0 0 24px rgba(201,160,107,.12);}
+  .social-btn:hover svg{color:var(--gold);}
+  footer.site .copyright{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#4a5260;}
+
+  /* utility */
+  .hidden{display:none !important;}
+  [data-i18n]{transition:opacity .25s ease;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .scroll-cue .ln{animation:none;}
+  }
+</style>
+</head>
+<body data-theme="night">
+
+  <!-- ============ NAV ============ -->
+  <header class="site" id="siteHeader">
+    <div class="brand-mark" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <img src="assets/logo.jpg" alt="ERIKA CHUNG logo">
+      <span class="brand-name">ERIKA CHUNG</span>
+    </div>
+
+    <nav class="links">
+      <a href="#story" data-i18n="nav_story">品牌故事</a>
+      <a href="#concept" data-i18n="nav_concept">本季概念</a>
+      <a href="#press" data-i18n="nav_press">媒體與講座</a>
+    </nav>
+
+    <div class="top-controls">
+      <div class="theme-switch" id="themeSwitch">
+        <button id="btnNight" class="active" data-i18n="theme_night">夜幕藏青</button>
+        <button id="btnDusk" data-i18n="theme_dusk">夕霞琥珀</button>
+      </div>
+      <button class="pill-btn" id="langBtn">
+        <span class="dot"></span>
+        <span class="active" id="langZh">中</span><span style="color:#3a4250">/</span><span class="inactive" id="langEn">EN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="prelude">
+    <div class="hero-bg">
+      <img src="assets/hero-banner.jpg" alt="ERIKA CHUNG NYFW 2027">
+      <div class="edge-veil"></div>
+      <div class="veil"></div>
+      <div class="grain"></div>
+    </div>
+
+    <div class="hero-info">
+      <div class="eyebrow-row">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow" data-i18n="hero_eyebrow">紐約首秀前導計畫</span>
+      </div>
+
+      <div class="theme-switch-mobile" id="themeSwitchMobile">
+        <button id="btnNightM" class="active" data-i18n="theme_night">夜幕藏青</button>
+        <button id="btnDuskM" data-i18n="theme_dusk">夕霞琥珀</button>
+      </div>
+
+      <div class="hero-bottom-row">
+        <div>
+          <p class="hero-tag-line" data-i18n="hero_tag">ERIKA CHUNG ATELIER · 台灣高雄 × 紐約曼哈頓</p>
+          <p class="hero-sub" data-i18n="hero_sub">一針一線，皆是登陸紐約的伏筆。來自台灣高雄的高訂工藝，即將在曼哈頓的光影之間，寫下全新一頁。</p>
+        </div>
+        <div class="scroll-cue">
+          <span class="ln"></span>
+          <span data-i18n="hero_scroll">向下探索</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORY ROW 1 ============ -->
+  <section class="story-row" id="story">
+    <div class="container">
+      <div class="story-grid reveal">
+        <div class="media-col">
+          <div class="frame">
+            <span class="corner-tag">ARCHIVE — 01</span>
+            <svg class="sketch-svg" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M40,170 C55,110 70,40 100,30 C130,40 145,110 160,170" />
+              <path d="M70,150 C80,120 90,90 100,85 C110,90 120,120 130,150" stroke-dasharray="3 4" opacity=".6"/>
+              <circle cx="100" cy="22" r="6"/>
+              <path d="M55,175 L145,175 M65,160 L135,160" opacity=".5"/>
+            </svg>
+            <span class="placeholder-tag" data-i18n="ph_sketch1">（預留圖片區域）</span>
+          </div>
+        </div>
+        <div class="text-col">
+          <span class="num serif">I.</span>
+          <h3 class="serif-tc" data-i18n="story1_title">一針一線，<br>皆是登陸紐約的伏筆。</h3>
+          <p class="en-title" data-i18n="story1_en_title">Every stitch, a prelude to New York.</p>
+          <p class="zh" data-i18n="story1_zh">大氣的立體剪裁廓形或特殊蕾絲遠景，直接帶出「ERIKA CHUNG 2027 NYFW」字樣。</p>
+          <p class="en" data-i18n="story1_en">Bold silhouettes and exquisite lace visuals leading into &ldquo;ERIKA CHUNG 2027 NYFW&rdquo;.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORY ROW 2 ============ -->
+  <section class="story-row">
+    <div class="container">
+      <div class="story-grid reverse reveal">
+        <div class="media-col">
+          <div class="frame">
+            <span class="corner-tag">ARCHIVE — 02</span>
+            <svg class="sketch-svg" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M60,30 L60,170 M140,30 L140,170" opacity=".5"/>
+              <path d="M60,60 C90,40 110,40 140,60 M60,110 C90,95 110,95 140,110 M60,150 C90,165 110,165 140,150"/>
+              <path d="M95,30 L95,15 L105,15 L105,30" opacity=".6"/>
+            </svg>
+            <span class="placeholder-tag" data-i18n="ph_sketch2">（預留圖片區域）</span>
+          </div>
+        </div>
+        <div class="text-col">
+          <span class="num serif">II.</span>
+          <h3 class="serif-tc" data-i18n="story2_title">從台灣高雄，<br>到曼哈頓的光影之間。</h3>
+          <p class="en-title" data-i18n="story2_en_title">From Kaohsiung to the lights of Manhattan.</p>
+          <p class="zh" data-i18n="story2_zh">闡述品牌靈魂：「時尚關鍵是穿上合適版型」。我們將台灣的極致打版工藝，轉化為在國際舞台上發聲的尊榮氣場。</p>
+          <p class="en" data-i18n="story2_en">True style starts with the right fit. We translate meticulous Taiwanese pattern-making into a powerful presence on the global stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONCEPT TEASERS ============ -->
+  <section class="concepts" id="concept">
+    <div class="container">
+      <div class="concepts-head reveal">
+        <span class="eyebrow-label" data-i18n="concept_eyebrow">COLLECTION CONCEPT</span>
+        <h2 data-i18n="concept_title">【本季主題】預告與設計手稿</h2>
+        <p class="en" data-i18n="concept_en_title">The Concept — Teaser &amp; Sketches</p>
+      </div>
+
+      <div class="concept-cards reveal">
+        <div class="concept-card">
+          <div class="frame-mini">
+            <svg width="46%" viewBox="0 0 100 100" fill="none" stroke="var(--gold-dim)" stroke-width="1">
+              <path d="M20,80 Q50,10 80,80" />
+              <circle cx="50" cy="20" r="3" fill="var(--gold-dim)" stroke="none"/>
+            </svg>
+            <span class="placeholder-tag" data-i18n="ph_concept1">（預留圖片區域）</span>
+          </div>
+          <h4 data-i18n="concept_card1_title">【本季主題】預告與設計手稿</h4>
+          <span class="en-tag" data-i18n="concept_card_en">The Concept — Teaser &amp; Sketches</span>
+          <p class="zh" data-i18n="concept_card1_zh">展示即將登上紐約時裝週的系列靈感、特殊面料（如環境友善材質與高訂蕾絲的碰撞）。</p>
+          <p class="en" data-i18n="concept_card1_en">Preview the upcoming NYFW collection, featuring the contrast of eco-conscious philosophy and couture lace.</p>
+        </div>
+
+        <div class="concept-card">
+          <div class="frame-mini">
+            <svg width="46%" viewBox="0 0 100 100" fill="none" stroke="var(--gold-dim)" stroke-width="1">
+              <rect x="25" y="25" width="50" height="50" />
+              <line x1="25" y1="50" x2="75" y2="50" opacity=".5"/>
+              <line x1="50" y1="25" x2="50" y2="75" opacity=".5"/>
+            </svg>
+            <span class="placeholder-tag" data-i18n="ph_concept2">（預留圖片區域）</span>
+          </div>
+          <h4 data-i18n="concept_card2_title">【本季主題】預告與設計手稿</h4>
+          <span class="en-tag" data-i18n="concept_card_en">The Concept — Teaser &amp; Sketches</span>
+          <p class="zh" data-i18n="concept_card2_zh">展示即將登上紐約時裝週的系列靈感、特殊面料（如環境友善材質與高訂蕾絲的碰撞）。</p>
+          <p class="en" data-i18n="concept_card2_en">Preview the upcoming NYFW collection, featuring the contrast of eco-conscious philosophy and couture lace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRESS + SEMINAR ============ -->
+  <section class="press" id="press">
+    <div class="container">
+      <div class="press-grid reveal">
+
+        <div>
+          <span class="eyebrow-label" data-i18n="press_eyebrow">PRESS &amp; RECOGNITION</span>
+          <h2 class="serif-tc" style="font-size:clamp(26px,3.2vw,34px);font-weight:500;color:var(--paper);margin:0 0 32px;" data-i18n="press_title">媒體報導</h2>
+
+          <div class="press-card">
+            <div class="mast">
+              VOGUE
+              <small data-i18n="press_special">2027 SS SPECIAL</small>
+            </div>
+            <div class="quote">
+              <p data-i18n="press_quote">「來自台灣南端的一針一線，即將震撼曼哈頓的極致感官。」</p>
+            </div>
+            <div class="foot">
+              <span data-i18n="ph_press">（預留圖片區域：媒體報導）</span>
+              <span class="gold">READ ONLY</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="eyebrow-label" data-i18n="seminar_eyebrow">PRIVATE SALON</span>
+          <h2 class="serif-tc" style="font-size:clamp(26px,3.2vw,34px);font-weight:500;color:var(--paper);margin:0 0 32px;" data-i18n="seminar_eyebrow_title">前導講座</h2>
+
+          <div class="seminar-card">
+            <div>
+              <div class="status-chip">
+                <span class="dot"></span>
+                <span data-i18n="seminar_status">CONCLUDED · 圓滿落幕</span>
+              </div>
+              <h3 data-i18n="seminar_title">前導時尚講座</h3>
+              <p data-i18n="seminar_desc">VIP 專屬高訂工藝巡迴沙龍已於台北、高雄圓滿完成。現場率先揭曉登上紐約時裝週的服裝版型結構、環境永續布料與頂級工坊美學。</p>
+              <div class="seminar-venue">
+                <span class="gold" data-i18n="seminar_venue_label">沙龍地點 / Venues：</span>
+                <span data-i18n="seminar_venue_value">台北・高雄 VIP 專屬會館</span>
+              </div>
+            </div>
+            <div class="seminar-closed-bar" data-i18n="seminar_closed">SEMINAR COMPLETED · 席次已圓滿落幕</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site">
+    <h2 class="brand serif" data-i18n="footer_brand">ERIKA CHUNG</h2>
+    <p class="sub" data-i18n="footer_sub">NEW YORK FASHION WEEK 2027</p>
+    <p class="lead" data-i18n="footer_lead">關注最新秀場動態與高訂服裝幕後花絮，我們將台灣極致匠人精神，帶至更遙遠的國際彼端。</p>
+
+    <div class="social-row">
+      <a class="social-btn" href="https://www.facebook.com/erikachung.cpy" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+        <span data-i18n="footer_fb">FACEBOOK</span>
+      </a>
+      <a class="social-btn" href="https://www.instagram.com/erikachung_cpy/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <span data-i18n="footer_ig">INSTAGRAM</span>
+      </a>
+    </div>
+
+    <p class="copyright">© 2026 ERIKA CHUNG COUTURE. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script>
+    /* ===================== 多語言字典 ===================== */
+    const i18n = {
+      zh: {
+        nav_story:"品牌故事", nav_concept:"本季概念", nav_press:"媒體與講座",
+        theme_night:"夜幕藏青", theme_dusk:"夕霞琥珀",
+        hero_eyebrow:"紐約首秀前導計畫",
+        hero_tag:"ERIKA CHUNG ATELIER · 台灣高雄 × 紐約曼哈頓",
+        hero_sub:"一針一線，皆是登陸紐約的伏筆。來自台灣高雄的高訂工藝，即將在曼哈頓的光影之間，寫下全新一頁。",
+        hero_scroll:"向下探索",
+
+        story1_title:"一針一線，<br>皆是登陸紐約的伏筆。",
+        story1_en_title:"Every stitch, a prelude to New York.",
+        story1_zh:"大氣的立體剪裁廓形或特殊蕾絲遠景，直接帶出「ERIKA CHUNG 2027 NYFW」字樣。",
+        story1_en:"Bold silhouettes and exquisite lace visuals leading into &ldquo;ERIKA CHUNG 2027 NYFW&rdquo;.",
+        ph_sketch1:"（預留圖片區域）",
+
+        story2_title:"從台灣高雄，<br>到曼哈頓的光影之間。",
+        story2_en_title:"From Kaohsiung to the lights of Manhattan.",
+        story2_zh:"闡述品牌靈魂：「時尚關鍵是穿上合適版型」。我們將台灣的極致打版工藝，轉化為在國際舞台上發聲的尊榮氣場。",
+        story2_en:"True style starts with the right fit. We translate meticulous Taiwanese pattern-making into a powerful presence on the global stage.",
+        ph_sketch2:"（預留圖片區域）",
+
+        concept_eyebrow:"COLLECTION CONCEPT",
+        concept_title:"【本季主題】預告與設計手稿",
+        concept_en_title:"The Concept — Teaser &amp; Sketches",
+        concept_card1_title:"【本季主題】預告與設計手稿",
+        concept_card2_title:"【本季主題】預告與設計手稿",
+        concept_card_en:"The Concept — Teaser &amp; Sketches",
+        concept_card1_zh:"展示即將登上紐約時裝週的系列靈感、特殊面料（如環境友善材質與高訂蕾絲的碰撞）。",
+        concept_card2_zh:"展示即將登上紐約時裝週的系列靈感、特殊面料（如環境友善材質與高訂蕾絲的碰撞）。",
+        concept_card1_en:"Preview the upcoming NYFW collection, featuring the contrast of eco-conscious philosophy and couture lace.",
+        concept_card2_en:"Preview the upcoming NYFW collection, featuring the contrast of eco-conscious philosophy and couture lace.",
+        ph_concept1:"（預留圖片區域）", ph_concept2:"（預留圖片區域）",
+
+        press_eyebrow:"PRESS &amp; RECOGNITION",
+        press_title:"媒體報導",
+        press_special:"2027 SS SPECIAL",
+        press_quote:"「來自台灣南端的一針一線，即將震撼曼哈頓的極致感官。」",
+        ph_press:"（預留圖片區域：媒體報導）",
+
+        seminar_eyebrow:"PRIVATE SALON",
+        seminar_eyebrow_title:"前導講座",
+        seminar_status:"CONCLUDED · 圓滿落幕",
+        seminar_title:"前導時尚講座",
+        seminar_desc:"VIP 專屬高訂工藝巡迴沙龍已於台北、高雄圓滿完成。現場率先揭曉登上紐約時裝週的服裝版型結構、環境永續布料與頂級工坊美學。",
+        seminar_venue_label:"沙龍地點 / Venues：",
+        seminar_venue_value:"台北・高雄 VIP 專屬會館",
+        seminar_closed:"SEMINAR COMPLETED · 席次已圓滿落幕",
+
+        footer_brand:"ERIKA CHUNG",
+        footer_sub:"NEW YORK FASHION WEEK 2027",
+        footer_lead:"關注最新秀場動態與高訂服裝幕後花絮，我們將台灣極致匠人精神，帶至更遙遠的國際彼端。",
+        footer_fb:"FACEBOOK", footer_ig:"INSTAGRAM"
+      },
+      en: {
+        nav_story:"Story", nav_concept:"The Concept", nav_press:"Press &amp; Salon",
+        theme_night:"Midnight Navy", theme_dusk:"Dusk Amber",
+        hero_eyebrow:"New York Debut Project",
+        hero_tag:"ERIKA CHUNG ATELIER · KAOHSIUNG × MANHATTAN",
+        hero_sub:"Every stitch is a prelude to New York. Couture craft from Kaohsiung, Taiwan, prepares to write a new chapter among Manhattan's lights.",
+        hero_scroll:"Scroll to explore",
+
+        story1_title:"Every stitch,<br>a prelude to New York.",
+        story1_en_title:"Every stitch, a prelude to New York.",
+        story1_zh:"Bold silhouettes and exquisite lace visuals leading into &ldquo;ERIKA CHUNG 2027 NYFW&rdquo;.",
+        story1_en:"大氣的立體剪裁廓形或特殊蕾絲遠景，直接帶出「ERIKA CHUNG 2027 NYFW」字樣。",
+        ph_sketch1:"(Image Zone Reserved)",
+
+        story2_title:"From Kaohsiung<br>to the lights of Manhattan.",
+        story2_en_title:"From Kaohsiung to the lights of Manhattan.",
+        story2_zh:"True style starts with the right fit. We translate meticulous Taiwanese pattern-making into a powerful presence on the global stage.",
+        story2_en:"闡述品牌靈魂：「時尚關鍵是穿上合適版型」。我們將台灣的極致打版工藝，轉化為在國際舞台上發聲的尊榮氣場。",
+        ph_sketch2:"(Image Zone Reserved)",
+
+        concept_eyebrow:"COLLECTION CONCEPT",
+        concept_title:"The Concept — Teaser &amp; Sketches",
+        concept_en_title:"【本季主題】預告與設計手稿",
+        concept_card1_title:"The Concept — Teaser &amp; Sketches",
+        concept_card2_title:"The Concept — Teaser &amp; Sketches",
+        concept_card_en:"【本季主題】預告與設計手稿",
+        concept_card1_zh:"Preview the upcoming NYFW collection, featuring the contrast of eco-conscious philosophy and couture lace.",
+        concept_card2_zh:"Preview the upcoming NYFW collection, featuring the contrast of eco-conscious philosophy and couture lace.",
+        concept_card1_en:"展示即將登上紐約時裝週的系列靈感、特殊面料（如環境友善材質與高訂蕾絲的碰撞）。",
+        concept_card2_en:"展示即將登上紐約時裝週的系列靈感、特殊面料（如環境友善材質與高訂蕾絲的碰撞）。",
+        ph_concept1:"(Image Zone Reserved)", ph_concept2:"(Image Zone Reserved)",
+
+        press_eyebrow:"PRESS &amp; RECOGNITION",
+        press_title:"Press Coverage",
+        press_special:"2027 SS SPECIAL",
+        press_quote:"&ldquo;Every stitch from southern Taiwan is poised to captivate Manhattan's most discerning eyes.&rdquo;",
+        ph_press:"(Image Zone Reserved: Press)",
+
+        seminar_eyebrow:"PRIVATE SALON",
+        seminar_eyebrow_title:"Prelude Salon",
+        seminar_status:"CONCLUDED",
+        seminar_title:"Prelude Fashion Salon",
+        seminar_desc:"Our private couture draping salon tour has successfully concluded in Taipei and Kaohsiung, showcasing structural drafts, eco-conscious luxury textiles, and atelier-level craftsmanship ahead of NYFW.",
+        seminar_venue_label:"Venues:",
+        seminar_venue_value:"Taipei · Kaohsiung Private Salons",
+        seminar_closed:"SEMINAR COMPLETED · REGISTRATION CLOSED",
+
+        footer_brand:"ERIKA CHUNG",
+        footer_sub:"NEW YORK FASHION WEEK 2027",
+        footer_lead:"Follow our runway journey and behind-the-scenes couture craft, as we carry Taiwan's artisan spirit to the world stage.",
+        footer_fb:"FACEBOOK", footer_ig:"INSTAGRAM"
+      }
+    };
+
+    let currentLang = 'zh';
+
+    function applyLang(){
+      const dict = i18n[currentLang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if(dict[key] !== undefined){ el.innerHTML = dict[key]; }
+      });
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-Hant' : 'en';
+    }
+
+    document.getElementById('langBtn').addEventListener('click', ()=>{
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      document.getElementById('langZh').className = currentLang === 'zh' ? 'active' : 'inactive';
+      document.getElementById('langEn').className = currentLang === 'en' ? 'active' : 'inactive';
+      applyLang();
+    });
+
+    /* ===================== 主題切換（夜幕 / 夕霞） ===================== */
+    const btnNight = document.getElementById('btnNight');
+    const btnDusk = document.getElementById('btnDusk');
+    const btnNightM = document.getElementById('btnNightM');
+    const btnDuskM = document.getElementById('btnDuskM');
+
+    function setTheme(theme){
+      document.body.setAttribute('data-theme', theme);
+      const isNight = theme === 'night';
+      [btnNight, btnNightM].forEach(b=>b.classList.toggle('active', isNight));
+      [btnDusk, btnDuskM].forEach(b=>b.classList.toggle('active', !isNight));
+    }
+
+    btnNight.addEventListener('click', ()=>setTheme('night'));
+    btnDusk.addEventListener('click', ()=>setTheme('dusk'));
+    btnNightM.addEventListener('click', ()=>setTheme('night'));
+    btnDuskM.addEventListener('click', ()=>setTheme('dusk'));
+
+    /* ===================== Header 滾動樣式 ===================== */
+    const headerEl = document.getElementById('siteHeader');
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 40){ headerEl.classList.add('scrolled'); }
+      else{ headerEl.classList.remove('scrolled'); }
+    });
+
+    /* ===================== 滾動顯現動畫 ===================== */
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15 });
+    revealEls.forEach(el=>io.observe(el));
+
+    /* 初始套用語言（確保 innerHTML 與 data 屬性一致） */
+    applyLang();
+  </script>
+
+</body>
+</html>
