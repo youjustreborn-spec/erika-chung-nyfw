@@ -440,6 +440,14 @@
     background:var(--bg-1);border:1px solid var(--line);border-radius:2px;
     padding:40px;display:flex;flex-direction:column;justify-content:space-between;
   }
+  .seminar-media{
+    aspect-ratio:16/10;border:1px solid var(--line);border-radius:2px;
+    overflow:hidden;margin-bottom:24px;position:relative;
+  }
+  .seminar-media img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    filter:saturate(1.02);
+  }
   .status-chip{
     display:inline-flex;align-items:center;gap:8px;
     background:rgba(80,200,150,.08);border:1px solid rgba(80,200,150,.25);
@@ -646,7 +654,7 @@
 
           <div class="press-card">
             <div class="mast">
-              VOGUE
+              <span data-i18n="press_mast">最新報導</span>
               <small data-i18n="press_special">2027 SS SPECIAL</small>
             </div>
             <div class="quote">
@@ -661,20 +669,19 @@
 
         <div>
           <span class="eyebrow-label" data-i18n="seminar_eyebrow">PRIVATE SALON</span>
-          <h2 class="serif-tc" style="font-size:clamp(26px,3.2vw,34px);font-weight:500;color:var(--paper);margin:0 0 32px;" data-i18n="seminar_eyebrow_title">前導講座</h2>
+          <h2 class="serif-tc" style="font-size:clamp(26px,3.2vw,34px);font-weight:500;color:var(--paper);margin:0 0 32px;" data-i18n="seminar_eyebrow_title">永續時尚前導講座</h2>
 
           <div class="seminar-card">
             <div>
+              <div class="seminar-media">
+                <img src="assets/seminar.jpg" alt="永續時尚前導講座現場">
+              </div>
               <div class="status-chip">
                 <span class="dot"></span>
                 <span data-i18n="seminar_status">CONCLUDED · 圓滿落幕</span>
               </div>
-              <h3 data-i18n="seminar_title">前導時尚講座</h3>
-              <p data-i18n="seminar_desc">VIP 專屬高訂工藝巡迴沙龍已於台北、高雄圓滿完成。現場率先揭曉登上紐約時裝週的服裝版型結構、環境永續布料與頂級工坊美學。</p>
-              <div class="seminar-venue">
-                <span class="gold" data-i18n="seminar_venue_label">沙龍地點 / Venues：</span>
-                <span data-i18n="seminar_venue_value">台北・高雄 VIP 專屬會館</span>
-              </div>
+              <h3 data-i18n="seminar_title">永續時尚前導講座</h3>
+              <p data-i18n="seminar_desc">由 ERIKA CHUNG 主辦的永續時尚講座已圓滿完成，現場推動永續時尚之概念，並先行揭曉登上紐約時裝週的服裝設計元素與理念，將台灣元素與永續推廣一起帶到國際舞台。</p>
             </div>
             <div class="seminar-closed-bar" data-i18n="seminar_closed">SEMINAR COMPLETED · 席次已圓滿落幕</div>
           </div>
@@ -735,17 +742,16 @@
 
         press_eyebrow:"PRESS &amp; RECOGNITION",
         press_title:"媒體報導",
+        press_mast:"最新報導",
         press_special:"2027 SS SPECIAL",
         press_quote:"「來自台灣南端的一針一線，即將震撼曼哈頓的極致感官。」",
         ph_press:"（預留圖片區域：媒體報導）",
 
         seminar_eyebrow:"PRIVATE SALON",
-        seminar_eyebrow_title:"前導講座",
+        seminar_eyebrow_title:"永續時尚前導講座",
         seminar_status:"CONCLUDED · 圓滿落幕",
-        seminar_title:"前導時尚講座",
-        seminar_desc:"VIP 專屬高訂工藝巡迴沙龍已於台北、高雄圓滿完成。現場率先揭曉登上紐約時裝週的服裝版型結構、環境永續布料與頂級工坊美學。",
-        seminar_venue_label:"沙龍地點 / Venues：",
-        seminar_venue_value:"台北・高雄 VIP 專屬會館",
+        seminar_title:"永續時尚前導講座",
+        seminar_desc:"由 ERIKA CHUNG 主辦的永續時尚講座已圓滿完成，現場推動永續時尚之概念，並先行揭曉登上紐約時裝週的服裝設計元素與理念，將台灣元素與永續推廣一起帶到國際舞台。",
         seminar_closed:"SEMINAR COMPLETED · 席次已圓滿落幕",
 
         footer_brand:"ERIKA CHUNG",
@@ -781,17 +787,16 @@
 
         press_eyebrow:"PRESS &amp; RECOGNITION",
         press_title:"Press Coverage",
+        press_mast:"LATEST COVERAGE",
         press_special:"2027 SS SPECIAL",
         press_quote:"&ldquo;Every stitch from southern Taiwan is poised to captivate Manhattan's most discerning eyes.&rdquo;",
         ph_press:"(Image Zone Reserved: Press)",
 
         seminar_eyebrow:"PRIVATE SALON",
-        seminar_eyebrow_title:"Prelude Salon",
+        seminar_eyebrow_title:"Sustainable Fashion Prelude Salon",
         seminar_status:"CONCLUDED",
-        seminar_title:"Prelude Fashion Salon",
-        seminar_desc:"Our private couture draping salon tour has successfully concluded in Taipei and Kaohsiung, showcasing structural drafts, eco-conscious luxury textiles, and atelier-level craftsmanship ahead of NYFW.",
-        seminar_venue_label:"Venues:",
-        seminar_venue_value:"Taipei · Kaohsiung Private Salons",
+        seminar_title:"Sustainable Fashion Prelude Salon",
+        seminar_desc:"Hosted by ERIKA CHUNG, the sustainable fashion salon has successfully concluded, sharing the brand's sustainability philosophy and offering a first look at the design elements behind the upcoming NYFW collection — carrying Taiwan's spirit and sustainable values onto the international stage.",
         seminar_closed:"SEMINAR COMPLETED · REGISTRATION CLOSED",
 
         footer_brand:"ERIKA CHUNG",
