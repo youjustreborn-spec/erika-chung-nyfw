@@ -84,16 +84,15 @@
   #introScreen.fade-out{opacity:0;visibility:hidden;pointer-events:none;}
   .intro-mark{
     display:flex;flex-direction:column;align-items:center;gap:18px;
+  }
+  .intro-mark .logo{
+    height:34px;width:auto;
     opacity:0;
-    animation:introIn 1.4s var(--ease) .15s forwards;
+    animation:introLogo 1.4s var(--ease) .15s forwards;
   }
-  @keyframes introIn{
-    0%{opacity:0;transform:translateY(14px) scale(.97);letter-spacing:.5em;}
-    100%{opacity:1;transform:translateY(0) scale(1);letter-spacing:.42em;}
-  }
-  .intro-mark .name{
-    font-family:var(--serif);font-size:clamp(26px,4vw,40px);
-    letter-spacing:.42em;color:var(--paper);
+  @keyframes introLogo{
+    0%{opacity:0;transform:translateY(14px) scale(.97);}
+    100%{opacity:1;transform:translateY(0) scale(1);}
   }
   .intro-mark .line{
     width:0;height:1px;background:var(--gold);
@@ -125,15 +124,9 @@
     border-bottom:1px solid var(--line);
   }
   .brand-mark{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;}
-  .brand-mark img{height:26px;width:auto;display:block;border-radius:2px;}
-  .brand-name{
-    font-family:var(--sans);font-weight:500;
-    font-size:11px;letter-spacing:.28em;color:var(--paper);
-    white-space:nowrap;
-  }
+  .brand-logo{height:20px;width:auto;display:block;}
   @media(min-width:600px){
-    .brand-mark img{height:30px;}
-    .brand-name{font-size:13px;letter-spacing:.32em;}
+    .brand-logo{height:24px;}
   }
   nav.links{display:none;gap:40px;font-size:10.5px;letter-spacing:.24em;color:var(--paper-dim);text-transform:uppercase;}
   @media(min-width:860px){nav.links{display:flex;}}
@@ -513,7 +506,7 @@
   <!-- ============ INTRO / ENTRANCE ANIMATION ============ -->
   <div id="introScreen">
     <div class="intro-mark">
-      <span class="name serif">ERIKA CHUNG</span>
+      <img src="assets/ec-logo-white.png" alt="ERIKA CHUNG" class="logo">
       <span class="line"></span>
       <span class="tag" data-i18n="intro_tag">正在進入官方網站</span>
     </div>
@@ -522,8 +515,7 @@
   <!-- ============ NAV ============ -->
   <header class="site" id="siteHeader">
     <div class="brand-mark" data-scroll-target="#prelude">
-      <img src="assets/logo.jpg" alt="ERIKA CHUNG logo">
-      <span class="brand-name">ERIKA CHUNG</span>
+      <img src="assets/ec-logo-white.png" alt="ERIKA CHUNG" class="brand-logo">
     </div>
 
     <nav class="links">
